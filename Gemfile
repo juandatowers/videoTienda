@@ -5,15 +5,15 @@ gem 'rails', '3.0.10'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+# for Heroku deployment - as described in Ap. A of ELLS book
+group :development, :test do
+  gem 'sqlite3'
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
 group :production do
-  # gems specifically for Heroku go here
-  gem "pg"
+  gem 'pg'
 end
 
-group :development do
-  # gems specifically for Heroku go here
-  gem "sqlite3"
-end
 
 
 gem "hobo", :git => "git://github.com/tablatom/hobo.git", :branch => "rails3"
