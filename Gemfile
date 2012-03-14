@@ -5,7 +5,16 @@ gem 'rails', '3.0.10'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite'
+group :production do
+  # gems specifically for Heroku go here
+  gem "pg"
+end
+
+group :development do
+  # gems specifically for Heroku go here
+  gem "sqlite3"
+end
+
 
 gem "hobo", :git => "git://github.com/tablatom/hobo.git", :branch => "rails3"
 
