@@ -1,0 +1,79 @@
+<!-- usados en toda la aplicacion-->
+<include src="rapid" plugin="hobo" />
+<include src="taglibs/auto/rapid/cards" />
+<include src="taglibs/auto/rapid/forms" />
+<include src="taglibs/auto/rapid/pages" />
+
+<set-theme name="clean" />
+
+<!-- ====== Cards====== -->
+<def tag="card" for="Genero">
+  <card class="genero" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name field="nombre"/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Pelicula">
+  <card class="pelicula" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name field="nombre"/></a></h4>
+    </header:>
+  </card>
+</def>
+
+
+<!-- ====== Pelicula Pages ====== -->
+
+<def tag="show-page" for="Pelicula">
+  <page merge title="#{ht 'pelicula.show.title', :default=>['Pelicula'] }">
+
+    <body: class="show-page pelicula" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="pelicula.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="pelicula.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Pelicula
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="nombre, descripcion, genero.nombre" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+<!--========= Formulario para el ingreso de peliculas =========== -->
+<def tag="form" for="Pelicula">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="nombre, descripcion, genero" param/>
+    <div param="actions">
+      <submit label="#{ht 'pelicula.actions.save', :default=>['Save']}" param/><or-cancel param="cancel" class="button submit-button"/>
+    </div>
+  </form>
+</def>
+
+<!--========= Formulario para el ingreso de generos =========== -->
+<def tag="form" for="Genero">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="nombre, descripcion" param/>
+    <div param="actions">
+      <submit label="#{ht 'genero.actions.save', :default=>['Save']}" param/><or-cancel param="cancel" class="button submit-button"/>
+    </div>
+  </form>
+</def>

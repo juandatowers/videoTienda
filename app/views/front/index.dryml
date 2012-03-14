@@ -1,0 +1,27 @@
+<page title="Home">
+
+  <body: class="front-page"/>
+
+  <content:>
+    <header class="content-header">
+      <h1>Bienvenido a <app-name/></h1>
+      <section class="welcome-message">
+        <h3>Su aplicacion esta desplegada correctamente</h3>
+
+        <% if Towersadmin.count == 0 -%>
+          <h3 style="margin-top: 20px;">No se encontraron usuarios ingrese informacion para administrador</h3>
+          <form with="&this || Towersadmin.new" without-cancel>
+            <field-list: fields="name, email_address, password, password_confirmation"/>
+            <submit: label="Registrar Administrador"/>
+          </form>
+        <% end -%>
+
+
+      </section>
+    </header>
+
+    <section class="content-body">
+    </section>
+  </content:>
+
+</page>
